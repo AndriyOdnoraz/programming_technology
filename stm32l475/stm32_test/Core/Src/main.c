@@ -113,7 +113,7 @@ int main(void)
   MX_USART3_UART_Init();
   MX_USB_OTG_FS_PCD_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_SET);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -121,8 +121,11 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	HAL_UART_Transmit(&huart1, (uint8_t*)"Ping\r\n", 6, HAL_MAX_DELAY);
-	HAL_Delay(1000u);
+	  HAL_UART_Transmit(&huart1, (uint8_t*)"Ping\r\n", 6, HAL_MAX_DELAY);
+	  HAL_Delay(1000u);
+    /* LED Indication */
+    HAL_GPIO_TogglePin(LED2_GPIO_Port, LED2_Pin);
+    HAL_Delay(1500);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -658,6 +661,9 @@ void Error_Handler(void)
   __disable_irq();
   while (1)
   {
+    /* LED Indication */
+    HAL_GPIO_TogglePin(LED2_GPIO_Port, LED2_Pin);
+    HAL_Delay(500);
   }
   /* USER CODE END Error_Handler_Debug */
 }
