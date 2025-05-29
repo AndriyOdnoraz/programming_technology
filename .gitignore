@@ -1,0 +1,23 @@
+# STM32CubeIDE
+.metadata/
+*.launch
+*.log
+Debug/
+Release/
+build/
+.ipch/
+*.ioc~*
+*.bak
+
+# Compiled object files
+*.o
+*.d
+
+# Executables
+*.elf
+*.bin
+*.hex
+
+# System files
+.DS_Store
+Thumbs.db
