@@ -121,7 +121,8 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+	HAL_UART_Transmit(&huart1, (uint8_t*)"Ping\r\n", 6, HAL_MAX_DELAY);
+	HAL_Delay(1000u);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
