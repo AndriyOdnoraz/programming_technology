@@ -16,10 +16,10 @@ typedef enum {
     LED_BLINK_SLOW,
     LED_BLINK_FAST,
     LED_BLINK_SOS
-} LED_Mode;
+} led_mode_t;
 
-void LED_Init(void);
-void LED_SetMode(LED_Mode mode);
-void LED_Update(void);
+void led_init(void);
+void led_setmode(led_mode_t mode);
+void led_update(void);
 
 #endif /* INC_LED_H_ */

@@ -114,8 +114,8 @@ int main(void)
   HAL_Init();
   SystemClock_Config();
   MX_GPIO_Init();
-  LED_Init();
-  LED_SetMode(LED_BLINK_SLOW);
+  led_init();
+  led_setmode(LED_BLINK_SLOW);
 
   /* USER CODE END 2 */
 
@@ -126,7 +126,7 @@ int main(void)
     /* USER CODE END WHILE */
     HAL_UART_Transmit(&huart1, (uint8_t *)"Ping\r\n", 6, HAL_MAX_DELAY);
     HAL_Delay(1000u);
-    LED_Update();
+    led_update();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
