@@ -32,7 +32,7 @@ void LED_Update(void) {
             break;
 
         case LED_ON:
-            LED_Pin_Set();
+            LED_Pin_Reset();
             break;
 
         case LED_BLINK_SLOW:
