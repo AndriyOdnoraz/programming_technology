@@ -2,7 +2,6 @@
 .metadata/
 *.launch
 *.log
-Debug/
 Release/
 build/
 .ipch/
@@ -17,6 +16,11 @@ build/
 *.elf
 *.bin
 *.hex
+
+# Other
+*.su
+*.cyclo
+*.map
 
 # System files
 .DS_Store
