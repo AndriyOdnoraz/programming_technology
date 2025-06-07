@@ -15,3 +15,5 @@ jobs:
       run: sudo apt install gcc-arm-none-eabi
     - name: make
       run: cd stm32l475/stm32_test/Debug; make main-build
+    - name: test
+      run: sudo gem install ceedling; sudo apt install gcovr; cd stm32l475/stm32_test/Debug/unit_test; ceedling test:all gcov:all
