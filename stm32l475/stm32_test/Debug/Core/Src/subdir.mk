@@ -7,6 +7,7 @@
 C_SRCS += \
 ../Core/Src/main.c \
 ../Core/Src/led.c \
+../Core/Src/hal_led.c \
 ../Core/Src/stm32l4xx_hal_msp.c \
 ../Core/Src/stm32l4xx_it.c \
 ../Core/Src/syscalls.c \
@@ -16,6 +17,7 @@ C_SRCS += \
 OBJS += \
 ./Core/Src/main.o \
 ./Core/Src/led.o \
+./Core/Src/hal_led.o \
 ./Core/Src/stm32l4xx_hal_msp.o \
 ./Core/Src/stm32l4xx_it.o \
 ./Core/Src/syscalls.o \
@@ -25,6 +27,7 @@ OBJS += \
 C_DEPS += \
 ./Core/Src/main.d \
 ./Core/Src/led.d \
+./Core/Src/hal_led.d \
 ./Core/Src/stm32l4xx_hal_msp.d \
 ./Core/Src/stm32l4xx_it.d \
 ./Core/Src/syscalls.d \

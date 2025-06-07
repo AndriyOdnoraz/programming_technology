@@ -6,39 +6,47 @@
  */
 
 #include "led.h"
-#include "main.h"
+#include "hal_led.h"
+#include "stdint.h"
 
 static LED_Mode current_mode = LED_OFF;
 static uint32_t last_toggle_time = 0;
 static uint8_t led_state = 0;
 
 void LED_Init(void) {
-    HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_RESET);
+    LED_Pin_Reset();
 }
 
 void LED_SetMode(LED_Mode mode) {
     current_mode = mode;
     led_state = 0;
-    last_toggle_time = HAL_GetTick();
+    last_toggle_time = LED_Tick_get();
 }
 
 void LED_Update(void) {
-    uint32_t current_time = HAL_GetTick();
+    uint32_t current_time = LED_Tick_get();
 
     switch(current_mode) {
         case LED_OFF:
-            HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_RESET);
+            LED_Pin_Reset();
             break;
 
         case LED_ON:
-            HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_SET);
+            LED_Pin_Set();
             break;
 
         case LED_BLINK_SLOW:
             if(current_time - last_toggle_time >= 500) {
                 last_toggle_time = current_time;
                 led_state ^= 1;
-                HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, led_state ? GPIO_PIN_SET : GPIO_PIN_RESET);
+                if (led_state)
+                {
+                    LED_Pin_Set();
+                }
+                else
+                {
+                    LED_Pin_Reset();
+                }
             }
             break;
 
@@ -46,7 +54,14 @@ void LED_Update(void) {
             if(current_time - last_toggle_time >= 100) {
                 last_toggle_time = current_time;
                 led_state ^= 1;
-                HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, led_state ? GPIO_PIN_SET : GPIO_PIN_RESET);
+                if (led_state)
+                {
+                    LED_Pin_Set();
+                }
+                else
+                {
+                    LED_Pin_Reset();
+                }
             }
             break;
 
@@ -58,7 +73,14 @@ void LED_Update(void) {
                 last_toggle_time = current_time;
                 led_state ^= 1;
                 pattern_index = (pattern_index + 1) % (sizeof(sos_pattern)/sizeof(sos_pattern[0]));
-                HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, led_state ? GPIO_PIN_SET : GPIO_PIN_RESET);
+                if (led_state)
+                {
+                    LED_Pin_Set();
+                }
+                else
+                {
+                    LED_Pin_Reset();
+                }
             }
             break;
         }
