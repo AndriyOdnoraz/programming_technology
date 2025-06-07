@@ -8,8 +8,6 @@
 #ifndef INC_LED_H_
 #define INC_LED_H_
 
-#include "main.h"
-
 typedef enum {
     LED_OFF,
     LED_ON,
